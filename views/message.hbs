@@ -1,0 +1,57 @@
+{{var "title" "未读消息"}}
+{{var "styles"
+    [
+        "/styles/font-awesome.min.css",
+        "/styles/frame.css",
+        "/styles/override.css",
+        "/styles/mobile.css"
+    ]
+}}
+{{var "scripts"
+    [
+        "/scripts/lib/jquery-3.2.1.min.js",
+        "/scripts/app/frame.js"
+    ]
+}}
+
+{{~> common/header ~}}
+{{~> common/nav  ~}}
+
+<div class="block-main">
+    <div class="panel">
+        <div class="panel-header">
+            {{#if has_message_list}}
+                <a href="{{path}}/read-all-message" class="btn btn-primary btn-panel-header-right">全部设为已读</a>
+            {{/if}}
+            {{~> common/crumbs ~}}
+        </div>
+        <div class="panel-content">
+            {{#if has_message_list}}
+                <div class="message-list">
+                    {{#each message_list}}
+                        <div class="message">
+                            {{#if type}}
+                                <a href="{{path}}/user/{{username}}" class="username">{{username}}</a> 在话题 <a href="{{path}}/read-message/{{message_id}}?topic-id={{topic_id}}&comment-id={{comment_id}}">{{title}}</a> 中@了你
+                            {{else}}
+                                <a href="{{path}}/user/{{username}}" class="username">{{username}}</a> 回复了你的话题 <a href="{{path}}/read-message/{{message_id}}?topic-id={{topic_id}}&comment-id={{comment_id}}">{{title}}</a>
+                            {{/if}}
+                        </div>
+                    {{/each}}
+                </div>
+            {{else}}
+                <div class="no-data">
+                    暂无数据
+                </div>
+            {{/if}}
+
+        </div>
+        {{#if has_message_list}}
+            <div class="panel-footer">
+                {{~> common/pagination ~}}
+            </div>
+        {{/if}}
+    </div>
+</div>
+
+{{~> common/aside ~}}
+{{~> common/footer ~}}

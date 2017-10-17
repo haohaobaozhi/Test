@@ -1,0 +1,83 @@
+<aside class="block-aside">
+
+    {{#if is_topic_page}}
+    <div class="panel">
+        <div class="panel-header">
+            <h4>作者信息</h4>
+        </div>
+        <div class="panel-content">
+            <div class="user-card">
+                <div>
+                    <a href="{{path}}/user/{{author.username}}" class="avatar"><img src="{{author.avatar_url}}"></a>
+                    <div class="username-box">
+                        <a href="{{path}}/user/{{author.username}}" class="username">{{author.username}}</a>
+                    </div>
+                </div>
+                <div class="signature">
+                    {{#if author.signature}}
+                        “ {{author.signature}} ”
+                    {{else}}
+                        “ 这家伙很懒，什么个性签名都没有留下。 ”
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <h4>作者其它话题</h4>
+        </div>
+        <div class="panel-content">
+            {{#if is_has_related_topics}}
+            <ul class="info-list limit-text">
+                {{#each related_topics}}
+                <li><a href="{{path}}/topic/{{id}}">{{title}}</a></li>
+                {{/each}}
+            </ul>
+            {{else}}
+            <div class="no-data">暂无其它话题</div>
+            {{/if}}
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="panel friendly-link">
+        <div class="panel-header">
+            <h4>友情社区</h4>
+        </div>
+        <div class="panel-content">
+            <ul class="info-list">
+                <li>
+                    <a href="https://ruby-china.org" rel="nofollow" target="_blank">
+                        <img src="{{static_path}}/images/friendly/ruby.png">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://cnodejs.org" rel="nofollow" target="_blank">
+                        <img src="{{static_path}}/images/friendly/cnode.png">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://gocn.io" rel="nofollow" target="_blank">
+                        <img src="{{static_path}}/images/friendly/gocn.png">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel statistics-info">
+        <div class="panel-header">
+            <h4>统计信息</h4>
+        </div>
+        <div class="panel-content">
+            <ul class="info-list">
+                <li>社区会员: {{user_count}} 人</li>
+                <li>帖子数: {{topic_count}} 个</li>
+                <li>回帖数: {{comment_count}} 条</li>
+            </ul>
+        </div>
+    </div>
+
+</aside>

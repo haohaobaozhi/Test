@@ -1,0 +1,39 @@
+host = "localhost"
+port = 3000
+path = "http://localhost:3000"
+static_path = "http://localhost:3000/static"
+upload_path = "http://localhost:3000"  # 文件服务器地址
+
+# 管理员账号列表
+admins = ["admin"]
+
+[github]
+client_id = "c28f7718a19ee09c4a71"
+client_secret = "df1380ad7e8bbee69bff50d9671aac2a7f1a31b8"
+
+[mysql]
+host = "localhost"
+port = 3306
+username = "root"
+password = "111111"
+db_name = "runner"  # 数据库名称
+
+[redis]
+protocol = "redis"
+host = "localhost"
+port = 6379
+username = ""
+password = ""
+session_key = "runner"
+max_age = 2592000  # 单位s，session过期时间，默认30天
+
+[smtp]
+host = "smtp.163.com"
+port = 25
+username = "rustchina@163.com"
+password = "runner111111"
+
+[upload]
+temp_path = "upload/temp"  # 上传的临时文件夹
+assets_path = "upload/assets"  # 保存后，文件存放的文件夹
+clean_temp_dir_ttl = 86400000  # 单位ms，定时清理用户上传但并未保存的文件，默认24小时

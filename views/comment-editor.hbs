@@ -1,0 +1,48 @@
+{{var "title" "编辑回复"}}
+{{var "styles"
+    [
+        "/styles/font-awesome.min.css",
+        "/scripts/lib/editor/editor.css",
+        "/styles/frame.css",
+        "/styles/override.css",
+        "/styles/mobile.css"
+    ]
+}}
+{{var "scripts"
+    [
+        "/scripts/lib/jquery-3.2.1.min.js",
+        "/scripts/lib/editor/editor.js",
+        "/scripts/lib/markdown-it.min.js",
+        "/scripts/app/uploader.js",
+        "/scripts/app/mount-editor.js",
+        "/scripts/app/frame.js",
+        "/scripts/app/comment-editor.js"
+    ]
+}}
+
+{{~> common/header ~}}
+{{~> common/nav  ~}}
+
+<div class="block-main">
+    <div class="panel">
+        <div class="panel-header">
+           {{~> common/crumbs ~}}
+        </div>
+        <div class="panel-content">
+            <div class="create-topic">
+                <div class="editor-wrapper">
+                    <div class="editor-wrapper-inner edit-article">
+                        <textarea name="content" class="editor">{{content}}</textarea>
+                    </div>
+                </div>
+                <div class="btn-line">
+                    <a href="javascript:;" class="btn btn-primary" id="btn-submit">提交</a>
+                </div>
+                <input type="hidden" name="comment-id" id="comment-id" value="{{comment_id}}">
+            </div>
+        </div>
+    </div>
+</div>
+
+{{~> common/aside ~}}
+{{~> common/footer ~}}

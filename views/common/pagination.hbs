@@ -1,0 +1,13 @@
+<div class="pagination">
+    <a class="first {{#if pagination.is_first_page_disabled}}disabled{{/if}}" href="{{pagination.base_url}}{{pagination.first_page}}">«</a>
+    {{#if pagination.is_show_prev_ellipsis}}
+        <a class="ellipsis">...</a>
+    {{/if}}
+    {{#each pagination.page_list}}
+        <a href="{{../pagination.base_url}}{{this.page}}" {{#if this.is_active}}class="active disabled"{{/if}}>{{this.page}}</a>
+    {{/each}}
+    {{#if pagination.is_show_next_ellipsis}}
+        <a class="ellipsis">...</a>
+    {{/if}}
+    <a class="last {{#if pagination.is_last_page_disabled}}disabled{{/if}}" href="{{pagination.base_url}}{{pagination.last_page}}">»</a>
+</div>

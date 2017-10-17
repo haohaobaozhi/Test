@@ -1,0 +1,83 @@
+{{var "styles"
+    [
+        "/styles/font-awesome.min.css",
+        "/styles/frame.css",
+        "/styles/override.css",
+        "/styles/mobile.css"
+    ]
+}}
+{{var "scripts"
+    [
+        "/scripts/lib/jquery-3.2.1.min.js",
+        "/scripts/lib/moment.min.js",
+        "/scripts/app/frame.js"
+    ]
+}}
+
+{{~> common/header ~}}
+{{~> common/nav  ~}}
+
+<div class="block-main">
+    <div class="panel">
+        <div class="panel-header">
+            {{#if is_show_crumbs}}
+                {{~> common/crumbs ~}}
+            {{else}}
+                <div class="tabs">
+                    <a {{#if is_default_active}}class="active"{{/if}} href="{{path}}">默认</a>
+                    <a {{#if is_essence_active}}class="active"{{/if}} href="{{path}}/topics/essence">精华</a>
+                    <a {{#if is_latest_active}}class="active"{{/if}} href="{{path}}/topics/latest">最新</a>
+                    <a {{#if is_no_reply_active}}class="active"{{/if}} href="{{path}}/topics/no-reply">待回复</a>
+                    <a {{#if is_ask_active}}class="active"{{/if}} href="{{path}}/topics/ask">问答</a>
+                    <a {{#if is_share_active}}class="active"{{/if}} href="{{path}}/topics/share">分享</a>
+                    <a {{#if is_job_active}}class="active"{{/if}} href="{{path}}/topics/job">招聘</a>
+                </div>
+            {{/if}}
+        </div>
+        <div class="panel-content">
+            {{#if has_topic_list}}
+                {{#each topic_list}}
+                    <div class="topic">
+                        <div class="avatar">
+                            <a href="{{path}}/user/{{topic.author_name}}"><img src="{{topic.author_avatar_url}}"></a>
+                        </div>
+                        <div class="info">
+                            <dl>
+                                <dt>
+                                    {{#if topic.sticky}}
+                                        <span class="tag">置顶</span>
+                                    {{/if}}
+                                    {{#if topic.essence}}
+                                        <span class="tag">精华</span>
+                                    {{/if}}
+                                    <span class="tag tag-category">{{topic.category_name}}</span>
+                                    <a href="{{path}}/topic/{{topic.topic_id}}">{{topic.title}}</a>
+                                </dt>
+                                <dd>
+                                    <span class="item"><a href="{{path}}/user/{{topic.author_name}}">{{topic.author_name}}</a> 发布于 <span class="datetime-ago" data-datetime="{{topic.create_time}}"></span></span>
+                                    <span class="item">• <i class="reply-count">{{topic.comment_count}}</i> 个回复</span>
+                                    <span class="item">• <i class="view-count">{{topic.view_count}}</i> 次浏览</span>
+                                    {{#if comment.username}}
+                                        <span class="item right">最后由 <a href="{{path}}/user/{{comment.username}}"><img src="{{comment.avatar_url}}"> {{comment.username}}</a> 回复于 <span  class="datetime-ago" data-datetime="{{comment.create_time}}"></span></span>
+                                    {{/if}}
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                {{/each}}
+            {{else}}
+                <div class="no-data">
+                    暂无数据
+                </div>
+            {{/if}}
+        </div>
+        {{#if has_topic_list}}
+            <div class="panel-footer">
+                {{~> common/pagination ~}}
+            </div>
+        {{/if}}
+    </div>
+</div>
+
+{{~> common/aside ~}}
+{{~> common/footer ~}}
